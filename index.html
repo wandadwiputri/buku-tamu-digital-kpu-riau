@@ -33,7 +33,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
             position: relative;
             overflow-x: hidden;
@@ -48,70 +47,77 @@
         body::after {
             content: '';
             position: fixed;
-            bottom: 0; left: 0; width: 100%; height: 80px;
+            bottom: 0; left: 0; width: 100%; height: 60px;
             background-image: url('motif.png');
             background-size: contain;
             background-position: center bottom;
             background-repeat: repeat-x;
             opacity: 0.25; 
-            z-index: 0;
+            z-index: 998;
             border-top: 1px solid rgba(212, 175, 55, 0.3); 
+            pointer-events: none;
         }
 
         .btn-back {
-            position: fixed; top: 50px; left: 40px; width: 45px; height: 45px;
+            position: fixed; top: 100px; left: 40px; width: 40px; height: 40px;
             background: rgba(255, 255, 255, 0.1); border: 1px solid var(--kpu-gold);
             border-radius: 50%; display: none; align-items: center; justify-content: center;
-            color: var(--kpu-gold); font-size: 1.1rem; cursor: pointer; transition: 0.3s; z-index: 100; backdrop-filter: blur(10px);
+            color: var(--kpu-gold); font-size: 1rem; cursor: pointer; transition: 0.3s; z-index: 100; backdrop-filter: blur(10px);
         }
 
         .btn-back:hover { background: var(--gold-metallic); color: var(--kpu-maroon-dark); transform: scale(1.1); }
 
+        /* --- CONTAINER ADJUSTMENT --- */
         .container {
-            width: 100%; max-width: 1000px; padding: 40px 20px 100px 20px;
+            width: 100%; max-width: 1000px; 
+            padding: 110px 20px 80px 20px; /* Disesuaikan dengan header baru */
             display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 1; 
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER (LEBIH KECIL & PROPOSIONAL) --- */
         .header {
-            position: absolute; top: 40px; left: 50px; display: flex; align-items: center; gap: 15px; text-align: left; z-index: 10;
+            position: fixed; top: 0; left: 0; width: 100%;
+            display: flex; align-items: center; gap: 12px; text-align: left; 
+            z-index: 1001; padding: 10px 40px;
+            background: rgba(58, 5, 10, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
         }
-        .header img { width: 70px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
-        .header h2 { font-size: 1.4rem; font-weight: 700; color: var(--white); border-left: 2px solid var(--kpu-gold); padding-left: 15px; }
-        .header h2 span { font-weight: 400; font-size: 0.95rem; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
+        .header img { width: 45px; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.4)); }
+        .header h2 { font-size: 1.1rem; font-weight: 700; color: var(--white); border-left: 2px solid var(--kpu-gold); padding-left: 12px; line-height: 1.2; }
+        .header h2 span { font-weight: 400; font-size: 0.8rem; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
 
-        .main-content { margin-top: 100px; display: flex; flex-direction: column; align-items: center; animation: fadeIn 1.2s ease-out; width: 100%; }
+        .main-content { display: flex; flex-direction: column; align-items: center; animation: fadeIn 1.2s ease-out; width: 100%; }
 
         .icon-circle {
-            width: 120px; height: 120px; background: rgba(255,255,255,0.05); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; margin-bottom: 25px;
+            width: 100px; height: 100px; background: rgba(255,255,255,0.05); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
             border: 2px solid var(--kpu-gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); transition: 0.5s;
         }
-        .center-icon { font-size: 3.5rem; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .center-icon { font-size: 3rem; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .icon-circle:hover { transform: rotateY(180deg); box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
 
         .title-wrapper { margin-bottom: 15px; text-shadow: 0 4px 10px rgba(0,0,0,0.6); }
-        .title-small { font-size: 1.4rem; font-weight: 300; color: var(--kpu-cream); display: block; margin-bottom: 5px; }
-        .title-large { font-size: 2.6rem; font-weight: 700; color: var(--kpu-cream); letter-spacing: -0.5px; }
-        .subtitle { font-size: 1.15rem; font-style: italic; font-weight: 300; margin-bottom: 40px; opacity: 0.9; }
+        .title-small { font-size: 1.2rem; font-weight: 300; color: var(--kpu-cream); display: block; margin-bottom: 5px; }
+        .title-large { font-size: 2.2rem; font-weight: 700; color: var(--kpu-cream); letter-spacing: -0.5px; }
+        .subtitle { font-size: 1rem; font-style: italic; font-weight: 300; margin-bottom: 35px; opacity: 0.9; }
 
         .btn-primary {
             display: inline-flex; align-items: center; gap: 12px; background: var(--gold-metallic);
-            color: var(--kpu-maroon-dark); font-size: 1.05rem; font-weight: 700; padding: 16px 45px; 
+            color: var(--kpu-maroon-dark); font-size: 1rem; font-weight: 700; padding: 14px 40px; 
             border-radius: 40px; cursor: pointer; border: none; text-transform: uppercase; 
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); text-decoration: none;
         }
         .btn-primary:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3); }
 
-        .extra-links { margin-top: 45px; display: flex; gap: 35px; justify-content: center; }
-        .extra-links a, .extra-links span { color: var(--kpu-cream); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; transition: 0.3s; opacity: 0.8; cursor: pointer; }
+        .extra-links { margin-top: 40px; display: flex; gap: 30px; justify-content: center; }
+        .extra-links a, .extra-links span { color: var(--kpu-cream); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; transition: 0.3s; opacity: 0.8; cursor: pointer; }
         .extra-links a:hover, .extra-links span:hover { opacity: 1; color: var(--gold-soft); }
 
-        .form-section { width: 100%; max-width: 850px; display: none; animation: slideUpFade 0.6s ease-out; margin-top: 30px; }
+        .form-section { width: 100%; max-width: 850px; display: none; animation: slideUpFade 0.6s ease-out; margin-top: 5px; }
         
-        /* --- GRADIENT TITLES UNTUK FORM --- */
         .form-section h2 {
-            margin-bottom: 20px; 
+            margin-bottom: 15px; 
             font-weight: 600;
             background: var(--gold-metallic);
             -webkit-background-clip: text;
@@ -121,55 +127,69 @@
 
         .form-container { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
         iframe { width: 100%; border: none; display: block; }
-        #iframeReg { height: 1800px; } 
+        
+        /* Tinggi Iframe yang lebih aman agar tombol submit terlihat */
+        #iframeReg { min-height: 2200px; } 
+        #iframeSurv { min-height: 1200px; } 
 
-        .footer { margin-top: 50px; font-size: 0.85rem; opacity: 0.6; text-align: center; line-height: 1.6; }
+        /* --- FOOTER (LEBIH RAMPIH) --- */
+        .footer { 
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            padding: 8px 20px; font-size: 0.75rem; z-index: 1001;
+            background: rgba(58, 5, 10, 0.95);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center; line-height: 1.4;
+        }
 
         /* --- MODAL TERIMA KASIH --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(58, 5, 10, 0.9); backdrop-filter: blur(10px);
-            display: none; justify-content: center; align-items: center; z-index: 1000;
+            display: none; justify-content: center; align-items: center; z-index: 2000;
         }
         .modal-content {
             background: var(--white); color: var(--kpu-maroon-dark);
-            padding: 50px 40px; border-radius: 25px; max-width: 500px; width: 90%;
+            padding: 40px 30px; border-radius: 25px; max-width: 450px; width: 90%;
             text-align: center; position: relative; border: 4px solid var(--kpu-gold);
             box-shadow: 0 30px 70px rgba(0,0,0,0.8); animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .modal-icon {
-            font-size: 5.5rem; margin-bottom: 25px; display: inline-block;
+            font-size: 5rem; margin-bottom: 20px; display: inline-block;
             background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: goldBounce 2.5s infinite ease-in-out;
         }
-        .modal-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; color: var(--kpu-maroon); }
-        .modal-text { font-size: 1rem; line-height: 1.6; color: #444; margin-bottom: 25px; }
+        .modal-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; color: var(--kpu-maroon); }
+        .modal-text { font-size: 0.95rem; line-height: 1.6; color: #444; margin-bottom: 25px; }
         
         .modal-btn-group { display: flex; flex-direction: column; gap: 12px; align-items: center; }
         
         .btn-modal {
-            width: 100%; max-width: 280px; padding: 14px 20px; background: var(--kpu-maroon); color: white;
+            width: 100%; max-width: 260px; padding: 12px 20px; background: var(--kpu-maroon); color: white;
             border: none; border-radius: 30px; cursor: pointer; font-weight: 600; transition: 0.3s;
-            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px;
+            text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px;
         }
         .btn-modal:hover { background: var(--kpu-gold); color: var(--kpu-maroon-dark); transform: translateY(-3px); }
         .btn-modal.secondary { background: #e0e0e0; color: #555; }
-        .btn-modal.secondary:hover { background: #ccc; color: #333; }
 
         /* --- ANIMASI --- */
         @keyframes goldBounce {
-            0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.2)); }
-            50% { transform: translateY(-15px) scale(1.1); filter: drop-shadow(0 15px 15px rgba(212, 175, 55, 0.4)); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
         }
         @keyframes modalPop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 768px) {
-            .header { position: relative; top: 0; left: 0; flex-direction: column; text-align: center; margin-bottom: 20px; }
-            .header h2 { border-left: none; border-top: 2px solid var(--kpu-gold); padding: 10px 0 0 0; }
-            .title-large { font-size: 1.8rem; }
+            .header { padding: 10px 20px; justify-content: flex-start; } /* TETAP DI KIRI */
+            .header h2 { font-size: 0.95rem; padding-left: 10px; }
+            .header img { width: 38px; }
+            .title-large { font-size: 1.6rem; }
             .extra-links { flex-direction: column; gap: 15px; }
+            .btn-back { left: 15px; top: 85px; width: 35px; height: 35px; }
+            .container { padding-top: 90px; }
+            #iframeReg { min-height: 2500px; } /* Lebih panjang untuk mobile agar tidak terpotong */
         }
     </style>
 </head>
@@ -190,13 +210,13 @@
         <i class="fas fa-arrow-left"></i>
     </button>
 
-    <div class="container">
-        
-        <div id="mainHeader" class="header">
-            <img src="logo%20kpu.png" alt="Logo KPU">
-            <h2>KPU<br><span>PROVINSI RIAU</span></h2>
-        </div>
+    <!-- HEADER (RAMPIH & KONSISTEN DI KIRI) -->
+    <div id="mainHeader" class="header">
+        <img src="logo%20kpu.png" alt="Logo KPU">
+        <h2>KPU<br><span>PROVINSI RIAU</span></h2>
+    </div>
 
+    <div class="container">
         <div id="bagian-home" class="main-content">
             <div class="icon-circle">
                 <i class="fas fa-file-signature center-icon"></i>
@@ -220,25 +240,25 @@
         <div id="bagian-registrasi" class="form-section">
             <h2>Form Registrasi Tamu</h2>
             <div class="form-container">
-                <iframe id="iframeReg" src="https://docs.google.com/forms/d/e/1FAIpQLSdI2ah1eJdnfWtoDha_IGm9fg_waAyTs6tP6b4AyzAGGLgBvQ/viewform?embedded=true" onload="cekSubmitReg()">Memuat...</iframe>
+                <iframe id="iframeReg" src="https://docs.google.com/forms/d/e/1FAIpQLSdI2ah1eJdnfWtoDha_IGm9fg_waAyTs6tP6b4AyzAGGLgBvQ/viewform?embedded=true" onload="cekSubmitReg()" scrolling="no">Memuat...</iframe>
             </div>
         </div>
 
         <div id="bagian-survei" class="form-section">
             <h2>Survei Kepuasan Pelayanan</h2>
             <div class="form-container">
-                <iframe id="iframeSurv" src="https://docs.google.com/forms/d/e/1FAIpQLSdSqjfIa6pIwscKsIsoNoHQL_cmsZKt1getDeTIvW07ClWngw/viewform?embedded=true" style="height:900px" onload="cekSubmitSurv()">Memuat...</iframe>
+                <iframe id="iframeSurv" src="https://docs.google.com/forms/d/e/1FAIpQLSdSqjfIa6pIwscKsIsoNoHQL_cmsZKt1getDeTIvW07ClWngw/viewform?embedded=true" onload="cekSubmitSurv()" scrolling="no">Memuat...</iframe>
             </div>
-        </div>
-
-        <div class="footer" id="mainFooter">
-            Pribadi dan Rahasia. Data Anda dilindungi KPU Riau.<br>
-            © 2026 Komisi Pemilihan Umum Provinsi Riau
         </div>
     </div>
 
+    <!-- FOOTER (RAMPIH) -->
+    <div class="footer" id="mainFooter">
+        Pribadi dan Rahasia. Data Anda dilindungi KPU Riau.<br>
+        © 2026 Komisi Pemilihan Umum Provinsi Riau
+    </div>
+
     <script>
-        // Logika Status agar tidak error/muncul berulang
         let statusReg = "diam"; 
         let statusSurv = "diam";
 
@@ -291,13 +311,11 @@
         function cekSubmitReg() { 
             if (statusReg === "siap") {
                 statusReg = "selesai"; 
-                
                 tampilkanPesan(
                     "Registrasi Anda Telah Terverifikasi", 
                     "Terima kasih! Data Anda berhasil disimpan. Mohon luangkan waktu sebentar untuk mengisi survei kami.",
                     "reg"
                 );
-
                 setTimeout(() => {
                     let frame = document.getElementById('iframeReg');
                     let src = frame.src;
@@ -309,13 +327,11 @@
         function cekSubmitSurv() { 
             if (statusSurv === "siap") {
                 statusSurv = "selesai";
-
                 tampilkanPesan(
                     "Terima Kasih", 
                     "Aspirasi Anda sangat berharga! Terima kasih telah berkontribusi dalam perbaikan layanan kami",
                     "surv"
                 );
-
                 setTimeout(() => {
                     let frame = document.getElementById('iframeSurv');
                     let src = frame.src;
