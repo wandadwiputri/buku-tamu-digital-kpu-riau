@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Tamu Digital KPU Provinsi Riau</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* --- PALET WARNA MEWAH & ELEGAN --- */
+            --kpu-cream: #FDF9F1;        
+            --gold-soft: #F9F295;
+            --gold-medium: #D4AF37;
+            --gold-deep: #B8860B;
+            --gold-metallic: linear-gradient(145deg, #B8860B 0%, #F9F295 45%, #D4AF37 50%, #B8860B 100%);
+            --kpu-gold: #D4AF37; 
+            --kpu-maroon: #7A121A;
+            --kpu-maroon-dark: #3A050A;  
+            --white: #ffffff;
+            --font-main: 'Poppins', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--kpu-cream); 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+            background-color: var(--kpu-maroon-dark); 
+            background-image: linear-gradient(135deg, rgba(122, 18, 26, 0.80) 0%, rgba(58, 5, 10, 0.88) 100%), url('file:///D:/DOWNLOAD/background-kpu.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* --- MOTIF SONGKET --- */
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: 0; left: 0; width: 100%; height: 80px;
+            background-image: url('file:///D:/DOWNLOAD/motif.png');
+            background-size: contain;
+            background-position: center bottom;
+            background-repeat: repeat-x;
+            opacity: 0.25; 
+            z-index: 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.3); 
+        }
+
+        .btn-back {
+            position: fixed; top: 50px; left: 40px; width: 45px; height: 45px;
+            background: rgba(255, 255, 255, 0.1); border: 1px solid var(--kpu-gold);
+            border-radius: 50%; display: none; align-items: center; justify-content: center;
+            color: var(--kpu-gold); font-size: 1.1rem; cursor: pointer; transition: 0.3s; z-index: 100; backdrop-filter: blur(10px);
+        }
+
+        .btn-back:hover { background: var(--gold-metallic); color: var(--kpu-maroon-dark); transform: scale(1.1); }
+
+        .container {
+            width: 100%; max-width: 1000px; padding: 40px 20px 100px 20px;
+            display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 1; 
+        }
+
+        /* --- HEADER --- */
+        .header {
+            position: absolute; top: 40px; left: 50px; display: flex; align-items: center; gap: 15px; text-align: left; z-index: 10;
+        }
+        .header img { width: 70px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
+        .header h2 { font-size: 1.4rem; font-weight: 700; color: var(--white); border-left: 2px solid var(--kpu-gold); padding-left: 15px; }
+        .header h2 span { font-weight: 400; font-size: 0.95rem; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
+
+        .main-content { margin-top: 100px; display: flex; flex-direction: column; align-items: center; animation: fadeIn 1.2s ease-out; width: 100%; }
+
+        .icon-circle {
+            width: 120px; height: 120px; background: rgba(255,255,255,0.05); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; margin-bottom: 25px;
+            border: 2px solid var(--kpu-gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); transition: 0.5s;
+        }
+        .center-icon { font-size: 3.5rem; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .icon-circle:hover { transform: rotateY(180deg); box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); }
+
+        .title-wrapper { margin-bottom: 15px; text-shadow: 0 4px 10px rgba(0,0,0,0.6); }
+        .title-small { font-size: 1.4rem; font-weight: 300; color: var(--kpu-cream); display: block; margin-bottom: 5px; }
+        .title-large { font-size: 2.6rem; font-weight: 700; color: var(--kpu-cream); letter-spacing: -0.5px; }
+        .subtitle { font-size: 1.15rem; font-style: italic; font-weight: 300; margin-bottom: 40px; opacity: 0.9; }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 12px; background: var(--gold-metallic);
+            color: var(--kpu-maroon-dark); font-size: 1.05rem; font-weight: 700; padding: 16px 45px; 
+            border-radius: 40px; cursor: pointer; border: none; text-transform: uppercase; 
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); text-decoration: none;
+        }
+        .btn-primary:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 35px rgba(212, 175, 55, 0.3); }
+
+        .extra-links { margin-top: 45px; display: flex; gap: 35px; justify-content: center; }
+        .extra-links a, .extra-links span { color: var(--kpu-cream); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; transition: 0.3s; opacity: 0.8; cursor: pointer; }
+        .extra-links a:hover, .extra-links span:hover { opacity: 1; color: var(--gold-soft); }
+
+        .form-section { width: 100%; max-width: 850px; display: none; animation: slideUpFade 0.6s ease-out; margin-top: 30px; }
+        
+        /* --- GRADIENT TITLES UNTUK FORM --- */
+        .form-section h2 {
+            margin-bottom: 20px; 
+            font-weight: 600;
+            background: var(--gold-metallic);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        .form-container { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        iframe { width: 100%; border: none; display: block; }
+        #iframeReg { height: 1800px; } 
+
+        .footer { margin-top: 50px; font-size: 0.85rem; opacity: 0.6; text-align: center; line-height: 1.6; }
+
+        /* --- MODAL TERIMA KASIH --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(58, 5, 10, 0.9); backdrop-filter: blur(10px);
+            display: none; justify-content: center; align-items: center; z-index: 1000;
+        }
+        .modal-content {
+            background: var(--white); color: var(--kpu-maroon-dark);
+            padding: 50px 40px; border-radius: 25px; max-width: 500px; width: 90%;
+            text-align: center; position: relative; border: 4px solid var(--kpu-gold);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.8); animation: modalPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .modal-icon {
+            font-size: 5.5rem; margin-bottom: 25px; display: inline-block;
+            background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: goldBounce 2.5s infinite ease-in-out;
+        }
+        .modal-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; color: var(--kpu-maroon); }
+        .modal-text { font-size: 1rem; line-height: 1.6; color: #444; margin-bottom: 25px; }
+        
+        .modal-btn-group { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+        
+        .btn-modal {
+            width: 100%; max-width: 280px; padding: 14px 20px; background: var(--kpu-maroon); color: white;
+            border: none; border-radius: 30px; cursor: pointer; font-weight: 600; transition: 0.3s;
+            text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px;
+        }
+        .btn-modal:hover { background: var(--kpu-gold); color: var(--kpu-maroon-dark); transform: translateY(-3px); }
+        .btn-modal.secondary { background: #e0e0e0; color: #555; }
+        .btn-modal.secondary:hover { background: #ccc; color: #333; }
+
+        /* --- ANIMASI --- */
+        @keyframes goldBounce {
+            0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.2)); }
+            50% { transform: translateY(-15px) scale(1.1); filter: drop-shadow(0 15px 15px rgba(212, 175, 55, 0.4)); }
+        }
+        @keyframes modalPop { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 768px) {
+            .header { position: relative; top: 0; left: 0; flex-direction: column; text-align: center; margin-bottom: 20px; }
+            .header h2 { border-left: none; border-top: 2px solid var(--kpu-gold); padding: 10px 0 0 0; }
+            .title-large { font-size: 1.8rem; }
+            .extra-links { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL POPUP -->
+    <div id="thankYouModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div id="modalContent"></div>
+            <div id="modalBtnContainer" class="modal-btn-group"></div>
+        </div>
+    </div>
+
+    <button id="btnBack" class="btn-back" onclick="navigasiBack()">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <div class="container">
+        
+        <div id="mainHeader" class="header">
+            <img src="file:///D:/DOWNLOAD/Habituasi/Developing%20UIUX%20Aplikasi%20Buku%20Tamu/logo%20kpu.png" alt="Logo KPU">
+            <h2>KPU<br><span>PROVINSI RIAU</span></h2>
+        </div>
+
+        <div id="bagian-home" class="main-content">
+            <div class="icon-circle">
+                <i class="fas fa-file-signature center-icon"></i>
+            </div>
+            <div class="title-wrapper">
+                <span class="title-small">Selamat Datang di</span>
+                <span class="title-large">Komisi Pemilihan Umum Provinsi Riau</span>
+            </div>
+            <p class="subtitle">"Mohon luangkan waktu sejenak untuk mengisi buku tamu digital kami."</p>
+
+            <button class="btn-primary" onclick="bukaHalaman('bagian-registrasi')">
+                <i class="fas fa-user-check"></i> Registrasi Kehadiran
+            </button>
+
+            <div class="extra-links">
+                <a href="https://riau.kpu.go.id" target="_blank"><i class="fas fa-globe"></i> Website Resmi KPU Riau </a>
+                <span onclick="bukaHalaman('bagian-survei')"><i class="fas fa-award"></i> Survei Kepuasan Pelayanan</span>
+            </div>
+        </div>
+
+        <div id="bagian-registrasi" class="form-section">
+            <h2>Form Registrasi Tamu</h2>
+            <div class="form-container">
+                <iframe id="iframeReg" src="https://docs.google.com/forms/d/e/1FAIpQLSdI2ah1eJdnfWtoDha_IGm9fg_waAyTs6tP6b4AyzAGGLgBvQ/viewform?embedded=true" onload="cekSubmitReg()">Memuat...</iframe>
+            </div>
+        </div>
+
+        <div id="bagian-survei" class="form-section">
+            <h2>Survei Kepuasan Pelayanan</h2>
+            <div class="form-container">
+                <iframe id="iframeSurv" src="https://docs.google.com/forms/d/e/1FAIpQLSdSqjfIa6pIwscKsIsoNoHQL_cmsZKt1getDeTIvW07ClWngw/viewform?embedded=true" style="height:1000px" onload="cekSubmitSurv()">Memuat...</iframe>
+            </div>
+        </div>
+
+        <div class="footer" id="mainFooter">
+            Pribadi dan Rahasia. Data Anda dilindungi KPU Riau.<br>
+            © 2026 Komisi Pemilihan Umum Provinsi Riau
+        </div>
+    </div>
+
+    <script>
+        // Logika Status agar tidak error/muncul berulang
+        let statusReg = "diam"; 
+        let statusSurv = "diam";
+
+        function bukaHalaman(id) {
+            document.getElementById('bagian-home').style.display = 'none';
+            document.getElementById('bagian-registrasi').style.display = 'none';
+            document.getElementById('bagian-survei').style.display = 'none';
+            
+            if(id === 'bagian-home') {
+                document.getElementById(id).style.display = 'flex';
+                document.getElementById('btnBack').style.display = 'none';
+            } else {
+                document.getElementById(id).style.display = 'block';
+                document.getElementById('btnBack').style.display = 'flex';
+                if(id === 'bagian-registrasi') statusReg = "siap";
+                if(id === 'bagian-survei') statusSurv = "siap";
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function navigasiBack() { 
+            document.getElementById('thankYouModal').style.display = 'none';
+            bukaHalaman('bagian-home'); 
+        }
+
+        function tampilkanPesan(judul, pesan, tipe) {
+            const modal = document.getElementById('thankYouModal');
+            const content = document.getElementById('modalContent');
+            const btnContainer = document.getElementById('modalBtnContainer');
+
+            content.innerHTML = `<h3 class="modal-title">${judul}</h3><p class="modal-text">${pesan}</p>`;
+
+            if (tipe === 'reg') {
+                btnContainer.innerHTML = `
+                    <button class="btn-modal" onclick="bukaHalaman('bagian-survei'); tutupModalOnly()">Isi Survei Kepuasan</button>
+                    <button class="btn-modal secondary" onclick="navigasiBack()">Kembali ke Beranda</button>
+                `;
+            } else {
+                btnContainer.innerHTML = `
+                    <button class="btn-modal" onclick="navigasiBack()">Kembali ke Beranda</button>
+                `;
+            }
+            modal.style.display = 'flex';
+        }
+
+        function tutupModalOnly() {
+            document.getElementById('thankYouModal').style.display = 'none';
+        }
+
+        function cekSubmitReg() { 
+            if (statusReg === "siap") {
+                statusReg = "selesai"; 
+                
+                tampilkanPesan(
+                    "Pendaftaran Berhasil", 
+                    "Terima kasih! Data Anda berhasil disimpan. Mohon luangkan waktu sebentar untuk mengisi survei kami.",
+                    "reg"
+                );
+
+                setTimeout(() => {
+                    let frame = document.getElementById('iframeReg');
+                    let src = frame.src;
+                    frame.src = ""; frame.src = src;
+                }, 1000);
+            }
+        }
+
+        function cekSubmitSurv() { 
+            if (statusSurv === "siap") {
+                statusSurv = "selesai";
+
+                tampilkanPesan(
+                    "Terima Kasih", 
+                    "Aspirasi Anda sangat berharga! Terima kasih telah berkontribusi dalam perbaikan layanan kami",
+                    "surv"
+                );
+
+                setTimeout(() => {
+                    let frame = document.getElementById('iframeSurv');
+                    let src = frame.src;
+                    frame.src = ""; frame.src = src;
+                }, 1000);
+            } 
+        }
+    </script>
+</body>
+</html>
