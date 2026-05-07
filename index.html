@@ -155,11 +155,11 @@
         /* PERUBAHAN KHUSUS MOBILE (IPHONE 12 MINI / SMALL DEVICES) */
         @media (max-width: 768px) {
             .container { padding-top: 120px; }
-            .title-large { font-size: 1.5rem; } /* Ukuran font judul diperkecil agar tidak berantakan */
+            .title-large { font-size: 1.5rem; } 
             .form-section { height: calc(100vh - 190px); }
             .footer { 
-                padding: 4px 15px; /* Footer dipertipis */
-                font-size: 0.65rem; /* Ukuran teks footer diperkecil */
+                padding: 4px 15px; 
+                font-size: 0.65rem; 
                 line-height: 1.2;
             }
         }
@@ -195,15 +195,17 @@
                 <p class="title-small" style="font-size: 1.1rem; font-weight: 300;">Selamat Datang di</p>
                 <h2 class="title-large">Komisi Pemilihan Umum<br>Provinsi Riau</h2>
             </div>
-            <p class="subtitle" style="margin-top: 20px; font-size: 0.95rem;">"Mohon luangkan waktu sejenak untuk mengisi buku tamu digital kami."</p>
+            <!-- Mengurangi margin bawah subtitle agar button & link naik -->
+            <p class="subtitle" style="margin-top: 20px; margin-bottom: 25px; font-size: 0.95rem;">"Mohon luangkan waktu sejenak untuk mengisi buku tamu digital kami."</p>
 
             <button class="btn-primary" onclick="bukaHalaman('bagian-registrasi')">
                 <i class="fas fa-user-check"></i> Registrasi Kehadiran
             </button>
 
-            <div class="extra-links" style="margin-top: 45px; display: flex; gap: 35px; justify-content: center;">
+            <!-- Margin top dikurangi dari 45px ke 25px agar posisi lebih naik -->
+            <div class="extra-links" style="margin-top: 25px; display: flex; gap: 35px; justify-content: center;">
                 <a href="https://riau.kpu.go.id" target="_blank" style="color: var(--kpu-cream); text-decoration: none; opacity: 0.8; font-size: 0.85rem;"><i class="fas fa-globe"></i> Website Resmi</a>
-                <span onclick="bukaHalaman('bagian-survei')" style="cursor: pointer; opacity: 0.8; font-size: 0.85rem;"><i class="fas fa-award"></i> Survei Kepuasan</span>
+                <span onclick="bukaHalaman('bagian-survei')" style="cursor: pointer; opacity: 0.8; font-size: 0.85rem;"><i class="fas fa-award"></i> Survei Pelayanan</span>
             </div>
         </div>
 
