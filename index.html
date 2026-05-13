@@ -58,7 +58,7 @@
 
         .footer { 
             width: 100%;
-            padding: 15px 20px; background: rgba(58, 5, 10, 0.95);
+            padding: 5px 5px; background: rgba(58, 5, 10, 0.95);
             backdrop-filter: blur(12px); font-size: 0.8rem; text-align: center;
             border-top: 1px solid rgba(212, 175, 55, 0.3);
             margin-top: auto; /* Memastikan footer selalu di bawah tanpa floating yang bikin goyang */
@@ -84,8 +84,24 @@
             width: 130px; height: 130px; background: rgba(255,255,255,0.05); border-radius: 50%;
             display: flex; align-items: center; justify-content: center; margin-bottom: 25px;
             border: 2px solid var(--kpu-gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            perspective: 1000px; /* Memberikan efek 3D saat berputar */
         }
-        .logo-sitepak { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+        /* --- BAGIAN YANG DIUBAH: Rotasi Vertikal Saat Disentuh --- */
+        .logo-sitepak { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .icon-circle:active .logo-sitepak, 
+        .icon-circle:hover .logo-sitepak {
+            transform: rotateY(360deg); /* Berputar secara vertikal */
+        }
+        /* --------------------------------------------------------- */
 
         .title-large { font-size: 2.2rem; font-weight: 700; color: var(--kpu-cream); line-height: 1.2; }
         .subtitle { font-size: 1rem; font-style: italic; margin-bottom: 40px; opacity: 0.9; }
@@ -114,7 +130,7 @@
             background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px;
             margin-bottom: 15px; border: 1px dashed var(--kpu-gold);
             display: flex; flex-direction: column; align-items: center; gap: 10px;
-            min-height: 180px; /* Menjaga tinggi agar tidak kaget saat foto muncul */
+            min-height: 150px; /* Menjaga tinggi agar tidak kaget saat foto muncul */
         }
         
         .preview-photo {
@@ -174,7 +190,7 @@
             <div class="icon-circle"><img src="Logo.png" alt="Logo Si-Tepak Riau" class="logo-sitepak"></div>
             <p style="font-size: 1rem; font-weight: 300;">Selamat Datang di</p>
             <h2 class="title-large">Komisi Pemilihan Umum<br>Provinsi Riau</h2>
-            <p class="subtitle" style="margin-top: 15px;">"Mohon luangkan waktu sejenak untuk mengisi buku tamu digital kami."</p>
+            <p class="subtitle" style="margin-top: 15px;">"Demi ketertiban administrasi, Silakan melakukan pengisian buku tamu digital."</p>
 
             <button class="btn-primary" onclick="bukaHalaman('bagian-registrasi')">
                 <i class="fas fa-user-check"></i> Registrasi Kehadiran
@@ -207,7 +223,7 @@
 
         <!-- Survei -->
         <div id="bagian-survei" class="form-section">
-            <h2 style="margin-bottom:15px; color: var(--kpu-gold);">SURVEI KEPUASAN</h2>
+            <h2 style="margin-bottom:15px; color: var(--kpu-gold);">SURVEI KEPUASAN PELAYANAN</h2>
             <div class="form-container">
                 <iframe id="iframeSurv" src="https://docs.google.com/forms/d/e/1FAIpQLSdSqjfIa6pIwscKsIsoNoHQL_cmsZKt1getDeTIvW07ClWngw/viewform?embedded=true" onload="cekSubmitSurv()">Memuat...</iframe>
             </div>
@@ -215,7 +231,7 @@
     </div>
 
     <div class="footer" id="mainFooter">
-        <p style="color: rgba(253, 249, 241, 0.5); font-size: 0.6rem; margin-bottom: 2px;">Sistem Informasi Tamu Elektronik Pelayanan KPU Riau</p>
+        <p style="color: rgba(253, 249, 241, 0.5); font-size: 0.6rem; margin-bottom: 0.5px;">Sistem Informasi Tamu Elektronik Pelayanan KPU Riau</p>
         © 2026 Komisi Pemilihan Umum Provinsi Riau
     </div>
 
