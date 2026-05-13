@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Buku Tamu Digital KPU Provinsi Riau</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,7 @@
             --font-main: 'Poppins', sans-serif;
         }
 
+        /* Penstabil Layout */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -33,7 +34,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
             overflow-x: hidden;
             background-color: var(--kpu-maroon-dark); 
             background-image: linear-gradient(135deg, rgba(122, 18, 26, 0.80) 0%, rgba(58, 5, 10, 0.88) 100%), url('background-kpu.jpg');
@@ -42,32 +42,30 @@
             background-attachment: fixed;
         }
 
-        @keyframes putarCoin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
-
+        /* Header dibuat static/absolute agar tidak membebani render saat scroll di HP */
         .header {
-            position: fixed; top: 0; left: 0; width: 100%;
+            position: absolute; top: 0; left: 0; width: 100%;
             display: flex; align-items: center; justify-content: flex-start;
-            gap: 15px; padding: 8px 35px;
+            gap: 15px; padding: 12px 35px;
             background: rgba(58, 5, 10, 0.95);
             backdrop-filter: blur(12px);
             z-index: 1000;
             border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
         }
-        .header img { width: 42px; }
+        .header img { width: 42px; height: 42px; }
         .header h2 { font-size: 1.1rem; font-weight: 700; color: var(--white); border-left: 2px solid var(--kpu-gold); padding-left: 15px; line-height: 1.2; }
         .header h2 span { font-weight: 400; font-size: 0.75rem; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; }
 
         .footer { 
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            padding: 8px 20px; background: rgba(58, 5, 10, 0.95);
+            width: 100%;
+            padding: 15px 20px; background: rgba(58, 5, 10, 0.95);
             backdrop-filter: blur(12px); font-size: 0.8rem; text-align: center;
-            z-index: 1000; border-top: 1px solid rgba(212, 175, 55, 0.3);
-            line-height: 1.4;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            margin-top: auto; /* Memastikan footer selalu di bawah tanpa floating yang bikin goyang */
         }
 
         .btn-back {
-            position: fixed; top: 80px; left: 35px; width: 45px; height: 45px;
+            position: fixed; top: 85px; left: 20px; width: 45px; height: 45px;
             background: rgba(255, 255, 255, 0.1); border: 1px solid var(--kpu-gold);
             border-radius: 50%; display: none; align-items: center; justify-content: center;
             color: var(--kpu-gold); font-size: 1.1rem; cursor: pointer; z-index: 100; backdrop-filter: blur(10px);
@@ -75,24 +73,22 @@
 
         .container {
             width: 100%; max-width: 1000px; 
-            padding: 140px 20px 80px 20px;
-            display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 1; 
+            padding: 120px 20px 40px 20px;
+            display: flex; flex-direction: column; align-items: center; text-align: center; z-index: 1;
+            flex: 1;
         }
 
-        .main-content { display: flex; flex-direction: column; align-items: center; animation: fadeIn 1.2s ease-out; width: 100%; }
+        .main-content { display: flex; flex-direction: column; align-items: center; animation: fadeIn 0.8s ease-out; width: 100%; }
 
         .icon-circle {
             width: 130px; height: 130px; background: rgba(255,255,255,0.05); border-radius: 50%;
             display: flex; align-items: center; justify-content: center; margin-bottom: 25px;
             border: 2px solid var(--kpu-gold); box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            perspective: 1000px;
         }
-
         .logo-sitepak { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .icon-circle:hover .logo-sitepak { animation: putarCoin 2s linear infinite; }
 
-        .title-large { font-size: 2.6rem; font-weight: 700; color: var(--kpu-cream); }
-        .subtitle { font-size: 1.15rem; font-style: italic; margin-bottom: 40px; opacity: 0.9; }
+        .title-large { font-size: 2.2rem; font-weight: 700; color: var(--kpu-cream); line-height: 1.2; }
+        .subtitle { font-size: 1rem; font-style: italic; margin-bottom: 40px; opacity: 0.9; }
 
         .btn-primary {
             display: inline-flex; align-items: center; gap: 12px; background: var(--gold-metallic);
@@ -100,81 +96,60 @@
             border-radius: 40px; cursor: pointer; border: none; text-transform: uppercase; 
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); text-decoration: none;
             margin-bottom: 25px;
+            transition: transform 0.2s;
         }
+        .btn-primary:active { transform: scale(0.95); }
 
-        /* Navigasi Tambahan sesuai image_70c306.png */
-        .extra-nav {
-            display: flex;
-            gap: 30px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-        }
-        .nav-link {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-            opacity: 0.9;
-        }
-        .nav-link:hover {
-            color: var(--kpu-gold);
-            opacity: 1;
-        }
+        .extra-nav { display: flex; gap: 30px; justify-content: center; margin-top: 10px; }
+        .nav-link { color: var(--white); text-decoration: none; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; opacity: 0.9; }
 
+        /* Form Section Stabilizer */
         .form-section { 
             width: 100%; max-width: 900px; display: none; flex-direction: column;
-            animation: slideUpFade 0.6s ease-out; height: calc(100vh - 180px); margin-top: 10px;
+            animation: fadeIn 0.5s ease-out; margin-top: 10px;
         }
 
+        /* Mencegah pergeseran saat gambar muncul */
+        .upload-section {
+            background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px;
+            margin-bottom: 15px; border: 1px dashed var(--kpu-gold);
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            min-height: 180px; /* Menjaga tinggi agar tidak kaget saat foto muncul */
+        }
+        
+        .preview-photo {
+            width: 100px; height: 100px; border-radius: 10px; border: 2px solid var(--kpu-gold);
+            object-fit: cover; display: none;
+        }
+
+        .upload-btn-wrapper { position: relative; overflow: hidden; display: inline-block; }
+        .btn-upload {
+            border: 1px solid var(--kpu-gold); color: var(--kpu-gold);
+            background-color: transparent; padding: 10px 30px;
+            border-radius: 25px; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+        }
+        .upload-btn-wrapper input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; cursor: pointer; }
+
         .form-container { 
-            background: white; border-radius: 15px; flex-grow: 1; 
+            background: white; border-radius: 15px; 
+            height: 600px; /* Tinggi dikunci agar halaman stabil saat iframe loading */
             overflow: hidden; display: flex; flex-direction: column;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        .upload-section {
-            background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 15px;
-            margin-bottom: 15px; border: 1px dashed var(--kpu-gold);
-            display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 20px;
-        }
-        .preview-photo {
-            width: 70px; height: 70px; border-radius: 10px; border: 2px solid var(--kpu-gold);
-            object-fit: cover; display: none;
-        }
-        .upload-btn-wrapper { position: relative; overflow: hidden; display: inline-block; }
-        .btn-upload {
-            border: 1px solid var(--kpu-gold); color: var(--kpu-gold);
-            background-color: transparent; padding: 8px 20px;
-            border-radius: 20px; font-size: 0.8rem; font-weight: 600; cursor: pointer;
-        }
-        .upload-btn-wrapper input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; cursor: pointer; }
-
-        iframe { width: 100%; height: 100%; border: none; flex: 1; }
+        iframe { width: 100%; height: 100%; border: none; }
 
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px);
-            display: none; justify-content: center; align-items: center; z-index: 1100;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px);
+            display: none; justify-content: center; align-items: center; z-index: 2000;
         }
         .modal-content {
-            background: var(--white); color: #333; padding: 40px 30px; border-radius: 35px; 
-            max-width: 450px; width: 92%; text-align: center; border: 4px solid var(--kpu-gold);
+            background: var(--white); color: #333; padding: 30px; border-radius: 30px; 
+            max-width: 400px; width: 90%; text-align: center; border: 4px solid var(--kpu-gold);
         }
-        .check-icon-container {
-            width: 90px; height: 90px; background: var(--gold-metallic);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 25px; color: white; font-size: 2.5rem;
-        }
-        .modal-title { color: var(--kpu-maroon); font-weight: 700; font-size: 1.6rem; margin-bottom: 15px; }
-        .modal-text { font-size: 0.95rem; color: #555; line-height: 1.6; margin-bottom: 30px; }
-        .modal-btn { width: 100%; padding: 14px; border: none; border-radius: 30px; font-weight: 700; cursor: pointer; text-transform: uppercase; background: var(--kpu-maroon); color: white; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -186,7 +161,6 @@
 
     <div id="thankYouModal" class="modal-overlay">
         <div class="modal-content">
-            <div class="check-icon-container"><i class="fas fa-check"></i></div>
             <div id="modalContent"></div>
             <div id="modalBtnContainer"></div>
         </div>
@@ -195,49 +169,45 @@
     <button id="btnBack" class="btn-back" onclick="navigasiBack()"><i class="fas fa-arrow-left"></i></button>
 
     <div class="container">
+        <!-- Home -->
         <div id="bagian-home" class="main-content">
             <div class="icon-circle"><img src="Logo.png" alt="Logo Si-Tepak Riau" class="logo-sitepak"></div>
-            <div>
-                <p style="font-size: 1.1rem; font-weight: 300;">Selamat Datang di</p>
-                <h2 class="title-large">Komisi Pemilihan Umum<br>Provinsi Riau</h2>
-            </div>
-            <p class="subtitle" style="margin-top: 20px;">"Mohon luangkan waktu sejenak untuk mengisi buku tamu digital kami."</p>
+            <p style="font-size: 1rem; font-weight: 300;">Selamat Datang di</p>
+            <h2 class="title-large">Komisi Pemilihan Umum<br>Provinsi Riau</h2>
+            <p class="subtitle" style="margin-top: 15px;">"Mohon luangkan waktu sejenak untuk mengisi buku tamu digital kami."</p>
 
             <button class="btn-primary" onclick="bukaHalaman('bagian-registrasi')">
                 <i class="fas fa-user-check"></i> Registrasi Kehadiran
             </button>
 
-            <!-- Bagian navigasi tambahan berdasarkan image_70c306.png -->
             <div class="extra-nav">
-                <a href="https://riau.kpu.go.id" target="_blank" class="nav-link">
-                    <i class="fas fa-globe"></i> Website Resmi
-                </a>
-                <a href="javascript:void(0)" onclick="bukaHalaman('bagian-survei')" class="nav-link">
-                    <i class="fas fa-award"></i> Survei Pelayanan
-                </a>
+                <a href="https://riau.kpu.go.id" target="_blank" class="nav-link"><i class="fas fa-globe"></i> Website Resmi</a>
+                <a href="javascript:void(0)" onclick="bukaHalaman('bagian-survei')" class="nav-link"><i class="fas fa-award"></i> Survei Pelayanan</a>
             </div>
         </div>
 
+        <!-- Registrasi -->
         <div id="bagian-registrasi" class="form-section">
-            <h2 style="margin-bottom:10px; color: var(--kpu-gold); font-weight: 700;">FORM REGISTRASI TAMU</h2>
+            <h2 style="margin-bottom:15px; color: var(--kpu-gold);">FORM REGISTRASI TAMU</h2>
             <div class="upload-section">
                 <img id="previewFoto" class="preview-photo" src="#" alt="Preview">
-                <div style="text-align: left;">
-                    <p style="font-size: 0.8rem; margin: 0 0 5px 0;">Ambil Selfie / Unggah Foto Identitas</p>
+                <div style="text-align: center;">
+                    <p style="font-size: 0.9rem; margin-bottom: 10px;">Ambil Selfie / Unggah Identitas</p>
                     <div class="upload-btn-wrapper">
                         <button class="btn-upload" id="tombolUploadUI"><i class="fas fa-camera"></i> Pilih Foto</button>
                         <input type="file" id="inputFoto" accept="image/*" capture="user" onchange="previewFile(this)">
                     </div>
                 </div>
-                <div id="statusInfo" style="font-size: 0.7rem; font-weight: bold;"></div>
+                <div id="statusInfo" style="font-size: 0.75rem; font-weight: bold;"></div>
             </div>
             <div class="form-container">
                 <iframe id="iframeReg" src="https://docs.google.com/forms/d/e/1FAIpQLSdI2ah1eJdnfWtoDha_IGm9fg_waAyTs6tP6b4AyzAGGLgBvQ/viewform?embedded=true" onload="cekSubmitReg()">Memuat...</iframe>
             </div>
         </div>
 
+        <!-- Survei -->
         <div id="bagian-survei" class="form-section">
-            <h2 style="margin-bottom:10px; color: var(--kpu-gold); font-weight: 700;">SURVEI KEPUASAN</h2>
+            <h2 style="margin-bottom:15px; color: var(--kpu-gold);">SURVEI KEPUASAN</h2>
             <div class="form-container">
                 <iframe id="iframeSurv" src="https://docs.google.com/forms/d/e/1FAIpQLSdSqjfIa6pIwscKsIsoNoHQL_cmsZKt1getDeTIvW07ClWngw/viewform?embedded=true" onload="cekSubmitSurv()">Memuat...</iframe>
             </div>
@@ -245,7 +215,7 @@
     </div>
 
     <div class="footer" id="mainFooter">
-        <p style="color: rgba(253, 249, 241, 0.5); font-size: 0.6rem; margin-bottom: 1px; font-weight: 300; letter-spacing: 0.5px;">Sistem Informasi Tamu Elektronik Pelayanan KPU Riau</p>
+        <p style="color: rgba(253, 249, 241, 0.5); font-size: 0.6rem; margin-bottom: 2px;">Sistem Informasi Tamu Elektronik Pelayanan KPU Riau</p>
         © 2026 Komisi Pemilihan Umum Provinsi Riau
     </div>
 
@@ -269,31 +239,28 @@
         }
 
         function uploadKeDrive(base64Data, namaFile) {
-            const btn = document.getElementById('tombolUploadUI');
             const status = document.getElementById('statusInfo');
             const base64Murni = base64Data.split(',')[1];
             const mimeType = base64Data.match(/data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+).*,.*/)[1];
 
             fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
-                body: JSON.stringify({ nama: "Tamu_" + Date.now() + "_" + namaFile, tipe: mimeType, data: base64Murni })
-            })
-            .then(() => {
+                mode: 'no-cors',
+                body: JSON.stringify({ nama: "Tamu_" + Date.now(), tipe: mimeType, data: base64Murni })
+            }).then(() => {
                 status.innerText = "✅ Tersimpan";
-                btn.style.background = '#28a745';
-                btn.style.color = 'white';
-            })
-            .catch(() => { status.innerText = "❌ Gagal"; });
+            }).catch(() => { status.innerText = "❌ Gagal"; });
         }
 
         function bukaHalaman(id) {
+            window.scrollTo(0, 0); // Scroll ke atas dulu agar stabil
             document.getElementById('bagian-home').style.display = 'none';
             document.getElementById('bagian-registrasi').style.display = 'none';
             document.getElementById('bagian-survei').style.display = 'none';
             document.getElementById(id).style.display = 'flex';
             document.getElementById('btnBack').style.display = (id==='bagian-home'?'none':'flex');
             
-            if(id==='bagian-registrasi'){ statusReg="siap"; siapDeteksi=false; setTimeout(()=>siapDeteksi=true, 6000); }
+            if(id==='bagian-registrasi'){ statusReg="siap"; siapDeteksi=false; setTimeout(()=>siapDeteksi=true, 5000); }
             if(id==='bagian-survei') statusSurv="siap";
         }
 
@@ -308,11 +275,11 @@
             const btnContainer = document.getElementById('modalBtnContainer');
             
             if (tipe === 'reg') {
-                content.innerHTML = '<h2 class="modal-title">Berhasil Terdaftar</h2><p class="modal-text">Terima kasih, data dan foto Anda telah kami terima.</p>';
-                btnContainer.innerHTML = '<button class="modal-btn" onclick="tutupModalOnly(); bukaHalaman(\'bagian-survei\')">Isi Survei Pelayanan</button>';
+                content.innerHTML = '<h2 style="color:var(--kpu-maroon)">Berhasil Terdaftar</h2><p style="margin:15px 0">Data dan foto Anda telah kami terima.</p>';
+                btnContainer.innerHTML = '<button class="btn-primary" onclick="tutupModalOnly(); bukaHalaman(\'bagian-survei\')">Isi Survei Pelayanan</button>';
             } else {
-                content.innerHTML = '<h2 class="modal-title">Terima Kasih</h2><p class="modal-text">Partisipasi Anda sangat berarti bagi peningkatan pelayanan kami.</p>';
-                btnContainer.innerHTML = '<button class="modal-btn" onclick="navigasiBack()">Selesai</button>';
+                content.innerHTML = '<h2 style="color:var(--kpu-maroon)">Terima Kasih</h2><p style="margin:15px 0">Partisipasi Anda sangat berarti.</p>';
+                btnContainer.innerHTML = '<button class="btn-primary" onclick="navigasiBack()">Selesai</button>';
             }
             modal.style.display = 'flex';
         }
