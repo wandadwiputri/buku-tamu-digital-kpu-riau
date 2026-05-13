@@ -42,7 +42,7 @@
             background-attachment: fixed;
         }
 
-        body.no-scroll { overflow: hidden; }
+        @keyframes putarCoin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
 
         .header {
             position: fixed; top: 0; left: 0; width: 100%;
@@ -99,6 +99,30 @@
             color: var(--kpu-maroon-dark); font-size: 1.05rem; font-weight: 700; padding: 16px 45px; 
             border-radius: 40px; cursor: pointer; border: none; text-transform: uppercase; 
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); text-decoration: none;
+            margin-bottom: 25px;
+        }
+
+        /* Navigasi Tambahan sesuai image_70c306.png */
+        .extra-nav {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            opacity: 0.9;
+        }
+        .nav-link:hover {
+            color: var(--kpu-gold);
+            opacity: 1;
         }
 
         .form-section { 
@@ -112,112 +136,108 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
+        .upload-section {
+            background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 15px;
+            margin-bottom: 15px; border: 1px dashed var(--kpu-gold);
+            display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 20px;
+        }
+        .preview-photo {
+            width: 70px; height: 70px; border-radius: 10px; border: 2px solid var(--kpu-gold);
+            object-fit: cover; display: none;
+        }
+        .upload-btn-wrapper { position: relative; overflow: hidden; display: inline-block; }
+        .btn-upload {
+            border: 1px solid var(--kpu-gold); color: var(--kpu-gold);
+            background-color: transparent; padding: 8px 20px;
+            border-radius: 20px; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+        }
+        .upload-btn-wrapper input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; cursor: pointer; }
+
         iframe { width: 100%; height: 100%; border: none; flex: 1; }
 
-        /* MODAL POPUP STYLING */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px);
             display: none; justify-content: center; align-items: center; z-index: 1100;
         }
         .modal-content {
-            background: var(--white); color: #333;
-            padding: 40px 30px; border-radius: 35px; max-width: 450px; width: 92%;
-            text-align: center; border: 4px solid var(--kpu-gold);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            background: var(--white); color: #333; padding: 40px 30px; border-radius: 35px; 
+            max-width: 450px; width: 92%; text-align: center; border: 4px solid var(--kpu-gold);
         }
         .check-icon-container {
-            width: 90px; height: 90px;
-            background: var(--gold-metallic);
+            width: 90px; height: 90px; background: var(--gold-metallic);
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             margin: 0 auto 25px; color: white; font-size: 2.5rem;
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
         }
-        .modal-title {
-            color: var(--kpu-maroon); font-weight: 700; font-size: 1.6rem;
-            margin-bottom: 15px; line-height: 1.3;
-        }
-        .modal-text {
-            font-size: 0.95rem; color: #555; line-height: 1.6; margin-bottom: 30px;
-        }
-        .modal-btn {
-            width: 100%; padding: 14px; border: none; border-radius: 30px;
-            font-weight: 700; font-size: 0.9rem; cursor: pointer;
-            text-transform: uppercase; letter-spacing: 0.5px; transition: 0.3s;
-        }
-        .btn-maroon { background: var(--kpu-maroon); color: white; }
-        .btn-gray { background: #E0E0E0; color: #666; }
+        .modal-title { color: var(--kpu-maroon); font-weight: 700; font-size: 1.6rem; margin-bottom: 15px; }
+        .modal-text { font-size: 0.95rem; color: #555; line-height: 1.6; margin-bottom: 30px; }
+        .modal-btn { width: 100%; padding: 14px; border: none; border-radius: 30px; font-weight: 700; cursor: pointer; text-transform: uppercase; background: var(--kpu-maroon); color: white; }
 
-        @keyframes putarCoin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideUpFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* PERUBAHAN KHUSUS MOBILE (IPHONE 12 MINI / SMALL DEVICES) */
-        @media (max-width: 768px) {
-            .container { padding-top: 120px; }
-            .title-large { font-size: 1.5rem; } 
-            .form-section { height: calc(100vh - 190px); }
-            .footer { 
-                padding: 4px 15px; 
-                font-size: 0.65rem; 
-                line-height: 1.2;
-            }
-        }
     </style>
 </head>
 <body>
 
-    <div id="mainHeader" class="header">
+    <div class="header">
         <img src="logo%20kpu.png" alt="Logo KPU">
         <h2>KPU<br><span>PROVINSI RIAU</span></h2>
     </div>
 
     <div id="thankYouModal" class="modal-overlay">
         <div class="modal-content">
-            <div class="check-icon-container">
-                <i class="fas fa-check"></i>
-            </div>
+            <div class="check-icon-container"><i class="fas fa-check"></i></div>
             <div id="modalContent"></div>
-            <div id="modalBtnContainer" style="display:flex; flex-direction:column; gap:12px;"></div>
+            <div id="modalBtnContainer"></div>
         </div>
     </div>
 
-    <button id="btnBack" class="btn-back" onclick="navigasiBack()">
-        <i class="fas fa-arrow-left"></i>
-    </button>
+    <button id="btnBack" class="btn-back" onclick="navigasiBack()"><i class="fas fa-arrow-left"></i></button>
 
     <div class="container">
         <div id="bagian-home" class="main-content">
-            <div class="icon-circle">
-                <img src="Logo.png" alt="Logo Si-Tepak Riau" class="logo-sitepak">
-            </div>
-            <div class="title-wrapper">
-                <p class="title-small" style="font-size: 1.1rem; font-weight: 300;">Selamat Datang di</p>
+            <div class="icon-circle"><img src="Logo.png" alt="Logo Si-Tepak Riau" class="logo-sitepak"></div>
+            <div>
+                <p style="font-size: 1.1rem; font-weight: 300;">Selamat Datang di</p>
                 <h2 class="title-large">Komisi Pemilihan Umum<br>Provinsi Riau</h2>
             </div>
-            <!-- Mengurangi margin bawah subtitle agar button & link naik -->
-            <p class="subtitle" style="margin-top: 20px; margin-bottom: 25px; font-size: 0.95rem;">"Mohon luangkan waktu sejenak untuk mengisi buku tamu digital kami."</p>
+            <p class="subtitle" style="margin-top: 20px;">"Mohon luangkan waktu sejenak untuk mengisi buku tamu digital kami."</p>
 
             <button class="btn-primary" onclick="bukaHalaman('bagian-registrasi')">
                 <i class="fas fa-user-check"></i> Registrasi Kehadiran
             </button>
 
-            <!-- Margin top dikurangi dari 45px ke 25px agar posisi lebih naik -->
-            <div class="extra-links" style="margin-top: 25px; display: flex; gap: 35px; justify-content: center;">
-                <a href="https://riau.kpu.go.id" target="_blank" style="color: var(--kpu-cream); text-decoration: none; opacity: 0.8; font-size: 0.85rem;"><i class="fas fa-globe"></i> Website Resmi</a>
-                <span onclick="bukaHalaman('bagian-survei')" style="cursor: pointer; opacity: 0.8; font-size: 0.85rem;"><i class="fas fa-award"></i> Survei Pelayanan</span>
+            <!-- Bagian navigasi tambahan berdasarkan image_70c306.png -->
+            <div class="extra-nav">
+                <a href="https://riau.kpu.go.id" target="_blank" class="nav-link">
+                    <i class="fas fa-globe"></i> Website Resmi
+                </a>
+                <a href="javascript:void(0)" onclick="bukaHalaman('bagian-survei')" class="nav-link">
+                    <i class="fas fa-award"></i> Survei Pelayanan
+                </a>
             </div>
         </div>
 
         <div id="bagian-registrasi" class="form-section">
-            <h2 style="margin-bottom:10px; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; text-transform: uppercase; font-size: 1.2rem;">Form Registrasi Tamu</h2>
+            <h2 style="margin-bottom:10px; color: var(--kpu-gold); font-weight: 700;">FORM REGISTRASI TAMU</h2>
+            <div class="upload-section">
+                <img id="previewFoto" class="preview-photo" src="#" alt="Preview">
+                <div style="text-align: left;">
+                    <p style="font-size: 0.8rem; margin: 0 0 5px 0;">Ambil Selfie / Unggah Foto Identitas</p>
+                    <div class="upload-btn-wrapper">
+                        <button class="btn-upload" id="tombolUploadUI"><i class="fas fa-camera"></i> Pilih Foto</button>
+                        <input type="file" id="inputFoto" accept="image/*" capture="user" onchange="previewFile(this)">
+                    </div>
+                </div>
+                <div id="statusInfo" style="font-size: 0.7rem; font-weight: bold;"></div>
+            </div>
             <div class="form-container">
                 <iframe id="iframeReg" src="https://docs.google.com/forms/d/e/1FAIpQLSdI2ah1eJdnfWtoDha_IGm9fg_waAyTs6tP6b4AyzAGGLgBvQ/viewform?embedded=true" onload="cekSubmitReg()">Memuat...</iframe>
             </div>
         </div>
 
         <div id="bagian-survei" class="form-section">
-            <h2 style="margin-bottom:10px; background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; text-transform: uppercase; font-size: 1.2rem;">Survei Kepuasan Pelayanan</h2>
+            <h2 style="margin-bottom:10px; color: var(--kpu-gold); font-weight: 700;">SURVEI KEPUASAN</h2>
             <div class="form-container">
                 <iframe id="iframeSurv" src="https://docs.google.com/forms/d/e/1FAIpQLSdSqjfIa6pIwscKsIsoNoHQL_cmsZKt1getDeTIvW07ClWngw/viewform?embedded=true" onload="cekSubmitSurv()">Memuat...</iframe>
             </div>
@@ -230,31 +250,55 @@
     </div>
 
     <script>
-        let statusReg = "diam"; 
-        let statusSurv = "diam";
+        let statusReg = "diam", statusSurv = "diam", siapDeteksi = false;
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxrFnPEUO6qefpTNJ5NEnXRzdHRC3qcgEHpOBgLeZLuZK_ItZsur6Z-3PIL41gS9JDf/exec';
+
+        function previewFile(input) {
+            const preview = document.getElementById('previewFoto');
+            const status = document.getElementById('statusInfo');
+            const file = input.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function (e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                status.innerText = "Mengunggah...";
+                uploadKeDrive(e.target.result, file.name);
+            };
+            if (file) reader.readAsDataURL(file);
+        }
+
+        function uploadKeDrive(base64Data, namaFile) {
+            const btn = document.getElementById('tombolUploadUI');
+            const status = document.getElementById('statusInfo');
+            const base64Murni = base64Data.split(',')[1];
+            const mimeType = base64Data.match(/data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+).*,.*/)[1];
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify({ nama: "Tamu_" + Date.now() + "_" + namaFile, tipe: mimeType, data: base64Murni })
+            })
+            .then(() => {
+                status.innerText = "✅ Tersimpan";
+                btn.style.background = '#28a745';
+                btn.style.color = 'white';
+            })
+            .catch(() => { status.innerText = "❌ Gagal"; });
+        }
 
         function bukaHalaman(id) {
             document.getElementById('bagian-home').style.display = 'none';
             document.getElementById('bagian-registrasi').style.display = 'none';
             document.getElementById('bagian-survei').style.display = 'none';
+            document.getElementById(id).style.display = 'flex';
+            document.getElementById('btnBack').style.display = (id==='bagian-home'?'none':'flex');
             
-            if(id === 'bagian-home') {
-                document.getElementById(id).style.display = 'flex';
-                document.getElementById('btnBack').style.display = 'none';
-                document.body.classList.remove('no-scroll');
-            } else {
-                document.getElementById(id).style.display = 'flex';
-                document.getElementById('btnBack').style.display = 'flex';
-                document.body.classList.add('no-scroll');
-
-                if(id === 'bagian-registrasi') statusReg = "siap";
-                if(id === 'bagian-survei') statusSurv = "siap";
-            }
-            window.scrollTo(0,0);
+            if(id==='bagian-registrasi'){ statusReg="siap"; siapDeteksi=false; setTimeout(()=>siapDeteksi=true, 6000); }
+            if(id==='bagian-survei') statusSurv="siap";
         }
 
         function navigasiBack() { 
-            document.getElementById('thankYouModal').style.display = 'none';
+            document.getElementById('thankYouModal').style.display='none'; 
             bukaHalaman('bagian-home'); 
         }
 
@@ -262,45 +306,20 @@
             const modal = document.getElementById('thankYouModal');
             const content = document.getElementById('modalContent');
             const btnContainer = document.getElementById('modalBtnContainer');
-
+            
             if (tipe === 'reg') {
-                content.innerHTML = `
-                    <h2 class="modal-title">Registrasi Anda Telah Terverifikasi</h2>
-                    <p class="modal-text">Terima kasih! Data Anda berhasil disimpan. Mohon luangkan waktu sebentar untuk mengisi survei kami.</p>
-                `;
-                btnContainer.innerHTML = `
-                    <button class="modal-btn btn-maroon" onclick="bukaHalaman('bagian-survei'); tutupModalOnly()">Isi Survei Kepuasan</button>
-                    <button class="modal-btn btn-gray" onclick="navigasiBack()">Kembali ke Beranda</button>
-                `;
+                content.innerHTML = '<h2 class="modal-title">Berhasil Terdaftar</h2><p class="modal-text">Terima kasih, data dan foto Anda telah kami terima.</p>';
+                btnContainer.innerHTML = '<button class="modal-btn" onclick="tutupModalOnly(); bukaHalaman(\'bagian-survei\')">Isi Survei Pelayanan</button>';
             } else {
-                content.innerHTML = `
-                    <h2 class="modal-title">Terima Kasih</h2>
-                    <p class="modal-text">Aspirasi Anda sangat berharga! Terima kasih telah berkontribusi dalam perbaikan layanan kami.</p>
-                `;
-                btnContainer.innerHTML = `
-                    <button class="modal-btn btn-maroon" onclick="navigasiBack()">Kembali ke Beranda</button>
-                `;
+                content.innerHTML = '<h2 class="modal-title">Terima Kasih</h2><p class="modal-text">Partisipasi Anda sangat berarti bagi peningkatan pelayanan kami.</p>';
+                btnContainer.innerHTML = '<button class="modal-btn" onclick="navigasiBack()">Selesai</button>';
             }
             modal.style.display = 'flex';
         }
 
         function tutupModalOnly() { document.getElementById('thankYouModal').style.display = 'none'; }
-
-        function cekSubmitReg() { 
-            if (statusReg === "siap") {
-                statusReg = "selesai"; 
-                tampilkanPesan("reg");
-                setTimeout(() => { document.getElementById('iframeReg').src += ""; }, 1000);
-            }
-        }
-
-        function cekSubmitSurv() { 
-            if (statusSurv === "siap") {
-                statusSurv = "selesai";
-                tampilkanPesan("surv");
-                setTimeout(() => { document.getElementById('iframeSurv').src += ""; }, 900);
-            } 
-        }
+        function cekSubmitReg() { if (statusReg === "siap" && siapDeteksi) { statusReg="selesai"; tampilkanPesan("reg"); } }
+        function cekSubmitSurv() { if (statusSurv === "siap") { statusSurv="selesai"; tampilkanPesan("surv"); } }
     </script>
 </body>
 </html>
